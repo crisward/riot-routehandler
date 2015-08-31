@@ -111,7 +111,10 @@ Other options can be [found here](https://github.com/visionmedia/page.js#pageopt
 Couldn't find anything for riot which gave this ui-router type functionality.
 I also wanted a familiar path syntax, so used page.js as it uses the same route
 matching as express.js. Also thought this would aid in making this work server
-side eventually.
+side eventually. Finally I wanted something to be small and simple in the spirit of riot.
+Angular ui-router does a ton of stuff I never use, so I've kept this to do
+exaclty what I need and no more. Page.js is apparently 1200bytes and this library
+is <50 lines of code.
 
 
 ## Running Tests

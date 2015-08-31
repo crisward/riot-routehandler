@@ -34,6 +34,9 @@
     "page": "^1.6.3",
     "pagejs": "0.0.1-alpha"
   },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
   "devDependencies": {
     "chai": "^3.0.0",
     "coffee-script": "^1.9.3",

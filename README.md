@@ -1,5 +1,7 @@
 # Riot Routehandler
 
+[![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler)
+
 ## Installing
 
 ```

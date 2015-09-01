@@ -31,8 +31,7 @@
   "author": "cris ward",
   "license": "ISC",
   "dependencies": {
-    "page": "^1.6.3",
-    "pagejs": "0.0.1-alpha"
+    "page": "^1.6.3"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"

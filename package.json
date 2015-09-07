@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "A angular-ui-router inspired router handler for riot.js",
   "main": "lib/routehandler.js",
+  "repository": "crisward/riot-routehandler",
   "scripts": {
     "test": "karma start",
     "tdd": "karma start --reporters=spec --singleRun=false",

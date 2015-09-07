@@ -1,6 +1,6 @@
 {
   "name": "riot-routehandler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A angular-ui-router inspired router handler for riot.js",
   "main": "lib/routehandler.js",
   "repository": "crisward/riot-routehandler",
@@ -32,8 +32,7 @@
   "author": "cris ward",
   "license": "ISC",
   "dependencies": {
-    "page": "^1.6.3",
-    "pagejs": "0.0.1-alpha"
+    "page": "^1.6.3"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"

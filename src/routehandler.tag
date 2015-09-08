@@ -2,7 +2,10 @@ routehandler
   div(riot-tag="{tagname}")
 
   script(type='text/coffeescript').
-    page = require 'page'
+    if require?
+      page = require 'page'
+    else if !window.page?
+      return console.log 'Page.js not found - please check it has been npm installed or included in your page'
    
     @on 'mount',=>
       @tagstack = []

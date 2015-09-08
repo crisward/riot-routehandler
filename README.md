@@ -8,6 +8,10 @@
 npm install riot-routehandler
 ```
 
+## Demo
+
+Basic demo [here](http://codepen.io/crisward/pen/xwGJpM?editors=101)
+
 ## Usage
 
 This has been designed to be used with a common js compiler. I mainly use 'Browserify', though it should work fine

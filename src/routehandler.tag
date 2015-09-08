@@ -6,7 +6,8 @@ routehandler
       page = require 'page'
     else if !window.page?
       return console.log 'Page.js not found - please check it has been npm installed or included in your page'
-   
+    else
+      page = window.page
     @on 'mount',=>
       @tagstack = []
       if opts.routes

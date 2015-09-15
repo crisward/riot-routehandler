@@ -1,6 +1,7 @@
 # Riot Routehandler
 
 [![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler) [![Coverage Status](https://coveralls.io/repos/crisward/riot-routehandler/badge.svg?branch=master&service=github)](https://coveralls.io/github/crisward/riot-routehandler?branch=master)
+
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/crisward.svg)](https://saucelabs.com/u/crisward)
 
 ## Installing

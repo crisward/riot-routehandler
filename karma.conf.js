@@ -31,7 +31,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_ERROR,
+    logLevel: config.LOG_INFO,
 
     browsers: browsers,
     coverageReporter: {
@@ -42,10 +42,16 @@ module.exports = function (config) {
       build: 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')',
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
       testName: 'riot-routehandler',
+      connectOptions: {
+        port: 5757,
+        logfile: 'sauce_connect.log'
+      }
       startConnect: true,
       recordVideo: false,
       recordScreenshots: false,
-      customLaunchers:saucelabsBrowsers
     },
+    logLevel: 'debug',
+    captureTimeout: 120000,// Increase timeout in case connection in CI is slow
+    customLaunchers: saucelabsBrowsers
   });
 };

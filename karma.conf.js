@@ -45,12 +45,11 @@ module.exports = function (config) {
       connectOptions: {
         port: 5757,
         logfile: 'sauce_connect.log'
-      }
+      },
       startConnect: true,
       recordVideo: false,
       recordScreenshots: false,
     },
-    logLevel: 'debug',
     captureTimeout: 120000,// Increase timeout in case connection in CI is slow
     customLaunchers: saucelabsBrowsers
   });

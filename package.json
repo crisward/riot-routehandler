@@ -6,8 +6,8 @@
   "repository": "crisward/riot-routehandler",
   "scripts": {
     "test": "karma start",
-    "tdd": "karma start --reporters=spec --singleRun=false",
-    "start": "npm run watch &  npm run server",
+    "tdd": "npm run watch & karma start --reporters=spec --singleRun=false",
+    "watch": "riot -w src lib --template jade",
     "build": "riot src lib --template jade"
   },
   "browserify": {

@@ -44,7 +44,8 @@ module.exports = function (config) {
       testName: 'riot-routehandler',
       startConnect: true,
       recordVideo: false,
-      recordScreenshots: false
+      recordScreenshots: false,
+      customLaunchers:saucelabsBrowsers
     },
   });
 };

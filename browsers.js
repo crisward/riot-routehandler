@@ -20,6 +20,13 @@ module.exports = {
       version: '10',
       group: 1
     },
+    slIOS8: {
+      base: 'SauceLabs',
+      browserName: 'iphone',
+      platform: 'OS X 10.10',
+      version: '8.4',
+      group: 1
+    },
     slIE11: {
       base: 'SauceLabs',
       browserName: 'internet explorer',

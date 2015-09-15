@@ -2,10 +2,7 @@ module.exports = function (config) {
   'use strict';
   var saucelabsBrowsers = require('./browsers').browsers
   var browsers = ['PhantomJS']
-  if (process.env.SAUCELABS) {
-    for (var browser in saucelabsBrowsers) {
-      if (saucelabsBrowsers[browser].group != process.env.GROUP) delete saucelabsBrowsers[browser]
-    }
+  if (process.env.SAUCE_USERNAME) {
     browsers = Object.keys(saucelabsBrowsers)
   }
 

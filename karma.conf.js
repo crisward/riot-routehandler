@@ -22,7 +22,7 @@ module.exports = function (config) {
       "transform": ["browserify-istanbul"],
       extensions: ['.js', '.tag', '.coffee']
     },
-    reporters: ['spec', "coverage"],
+    reporters: ['spec', "coverage",'saucelabs'],
     //hostname:'192.168.1.7',
     port: 9876,
     colors: true,

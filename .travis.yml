@@ -9,6 +9,9 @@ branches:
 script:
   npm test
 
+after_success:
+  - 'cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/coveralls'
+
 sudo: false
 
 before_install:

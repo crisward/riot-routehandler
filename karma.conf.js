@@ -9,11 +9,12 @@ module.exports = function (config) {
       './test/*.coffee'
     ],
     preprocessors: {
-      './test/*.coffee': [ 'browserify' ],
-      './src/*.tag': [ 'browserify']
+      './test/*.coffee': [ 'browserify'],
+      './lib/*.js': [ 'browserify']
     },
     "browserify": {
       "debug": true,
+      "transform": ["browserify-istanbul"],
       extensions: ['.js', '.tag', '.coffee']
     },
     reporters: ['spec', "coverage"],
@@ -27,7 +28,10 @@ module.exports = function (config) {
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_ERROR,
 
-    browsers: ['PhantomJS']//,'Chrome']
-
+    browsers: ['PhantomJS'],//,'Chrome']
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [{type:'lcov',subdir: 'report-lcov'},{type:'text-summary'}]
+    }
   });
 };

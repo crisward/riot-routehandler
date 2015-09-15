@@ -38,9 +38,12 @@
     "registry": "http://registry.npmjs.org"
   },
   "devDependencies": {
+    "browserify-istanbul": "^0.2.1",
     "chai": "^3.0.0",
     "coffee-script": "^1.9.3",
     "coffeeify": "^1.1.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.3.20",
     "jade": "^1.9.2",
     "karma": "^0.13.9",
     "karma-browserify": "^4.3.0",

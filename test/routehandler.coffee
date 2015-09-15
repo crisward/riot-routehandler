@@ -1,5 +1,5 @@
-riot = require 'riot'
-routehandler = require '../src/routehandler.tag'
+window.riot = require 'riot'
+routehandler = require '../lib/routehandler.js'
 page = require 'page'
 require './samplepages.tag'
 spyclick = null

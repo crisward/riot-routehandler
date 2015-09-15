@@ -6,13 +6,13 @@ module.exports = {
       platform: 'OS X 10.10',
       group: 0
     },
-    slIE9: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      platform: 'Windows 7',
-      version: '9',
-      group: 1
-    },
+    //slIE9: {
+    //  base: 'SauceLabs',
+    //  browserName: 'internet explorer',
+    //  platform: 'Windows 7',
+    //  version: '9',
+    //  group: 1
+    //},
     slIE10: {
       base: 'SauceLabs',
       browserName: 'internet explorer',

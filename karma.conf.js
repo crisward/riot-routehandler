@@ -1,6 +1,14 @@
 module.exports = function (config) {
-  
   'use strict';
+  var saucelabsBrowsers = require('./saucelabs-browsers').browsers
+  var browsers = ['PhantomJS']
+  if (process.env.SAUCELABS) {
+    for (var browser in saucelabsBrowsers) {
+      if (saucelabsBrowsers[browser].group != process.env.GROUP) delete saucelabsBrowsers[browser]
+    }
+    browsers = Object.keys(saucelabsBrowsers)
+  }
+
   config.set({
     basePath: '',
     frameworks: ['browserify','mocha', 'chai','sinon'],
@@ -28,10 +36,18 @@ module.exports = function (config) {
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_ERROR,
 
-    browsers: ['PhantomJS'],//,'Chrome']
+    browsers: browsers,
     coverageReporter: {
       dir: 'coverage/',
       reporters: [{type:'lcov',subdir: 'report-lcov'},{type:'text-summary'}]
-    }
+    },
+    sauceLabs: {
+      build: 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')',
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+      testName: 'riot-routehandler',
+      startConnect: true,
+      recordVideo: false,
+      recordScreenshots: false
+    },
   });
 };

@@ -1,6 +1,6 @@
 module.exports = function (config) {
   'use strict';
-  var saucelabsBrowsers = require('./saucelabs-browsers').browsers
+  var saucelabsBrowsers = require('./browsers').browsers
   var browsers = ['PhantomJS']
   if (process.env.SAUCELABS) {
     for (var browser in saucelabsBrowsers) {

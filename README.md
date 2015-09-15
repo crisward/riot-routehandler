@@ -132,6 +132,18 @@ npm install
 npm test
 ```
 
+## Compatibility
+
+Internet Explorer versions 9 and below don't support the pushstate api, so require the addition of a browser shim to make this work. Page.js recommends <https://github.com/devote/HTML5-History-API>. This is available via a cdn, and if
+included with a conditional comment, would only be loaded in IE9 and below.
+
+```html
+<!--[if lte IE 9 ]>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5-history-api/4.2.2/history.min.js"></script>
+<![endif]-->
+```
+
+
 ## Todo
 
 * Add an examples folder and a pretty site. 

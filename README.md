@@ -1,6 +1,9 @@
 # Riot Routehandler
 
-[![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler) [![Coverage Status](https://coveralls.io/repos/crisward/riot-routehandler/badge.svg?branch=master&service=github)](https://coveralls.io/github/crisward/riot-routehandler?branch=master)
+[![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler) 
+[![Coverage Status](https://coveralls.io/repos/crisward/riot-routehandler/badge.svg?branch=master&service=github)](https://coveralls.io/github/crisward/riot-routehandler?branch=master) 
+[![NPM Downloads](https://img.shields.io/npm/dm/riot-routehandler.svg)](https://www.npmjs.com/package/riot-routehandler)
+[![NPM Downloads](https://img.shields.io/npm/v/riot-routehandler.svg)](https://www.npmjs.com/package/riot-routehandler)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/crisward.svg)](https://saucelabs.com/u/crisward)
 

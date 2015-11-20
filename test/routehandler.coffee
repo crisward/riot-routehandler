@@ -8,7 +8,8 @@ routes = [
   {route:"/page1/",tag:"page1"}
   {route:"/page1/:name",tag:"page1"}
   {route:"/page2/",tag:"page2",routes:[
-    {route:"sub/:name?",tag:"page2sub"}
+    {route:"/",tag:"page4"}
+    {route:"/sub/:name?",tag:"page2sub"}
   ]}
   {route:"/page3/",tag:"page2",routes:[
     {route:"sub/",tag:"page3sub",routes:[
@@ -40,10 +41,11 @@ describe 'routehandler',->
     page('/')
     expect(document.body.innerHTML).to.contain('Home Page')
 
-  it "should show page2",->
+  it "should show page2 and default page",->
     page('/page2/')
     expect(document.body.innerHTML).to.contain('Page 2')
-    expect(document.body.innerHTML).to.not.contain('subpage')
+    expect(document.body.textContent).to.not.contain('subpage')
+    expect(document.body.textContent).to.contain('Default Page')
 
   it "should show sub page",->
     page('/page2/sub/')
@@ -123,3 +125,5 @@ describe 'routehandler',->
     expect(document.body.innerHTML).to.contain("hello I'm page 1")
     page('/page1/cris')
     expect(document.body.innerHTML).to.contain('cris')
+
+

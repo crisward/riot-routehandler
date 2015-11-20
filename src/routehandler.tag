@@ -49,5 +49,11 @@ routehandler
       for route in routes
         subparents = if parents then parents.slice() else []
         subparents.push(route)
-        do (subparents)-> page parentpath+route.route, (req,next)-> cback(subparents,req)
+        do (subparents)->
+          subroute = (parentpath+route.route).replace(/\/\//g,'/')
+          page subroute, (req,next)->
+            cback(subparents,req)
+            next()
         @findRoute(subparents,route.routes,cback) if route.routes
+
+

@@ -10,6 +10,9 @@
     "watch": "riot -w src lib --template jade",
     "build": "riot src lib --template jade"
   },
+  "directories": {
+    "lib": "lib"
+  },
   "browserify": {
     "transform": [
       [

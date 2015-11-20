@@ -1,6 +1,9 @@
 home
   p hello I'm a Home Page
 
+page4
+  p Default Page
+
 page1
   p hello I'm page 1
   p(if="{opts.params.name}") your name is {opts.params.name}
@@ -45,6 +48,8 @@ page3subsub
       window.subsubmountcount++ if window.subsubmountcount?
     @on 'unmount',->
       window.subsubmountcount-- if window.subsubmountcount?
+
+
 
 
     

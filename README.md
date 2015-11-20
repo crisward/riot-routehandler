@@ -109,6 +109,21 @@ passed in function. ie to go to about page
 
 `opts.page('/about/')`
 
+### Default Routes
+
+It is possible to have a default subroute. This can be done by simply using the `/`
+in your subroutes. With the following routes, `subpage` tag will be shown by default
+if you navigate to `/page/`.
+
+```html
+routes = [
+    {route:"/",tag:"home"},
+    {route:"/page/",tag:"settings",routes:[
+      {route:"/",tag:"subpage"},
+      {route:"/another/",tag:"subpage2"},
+    ]}
+  ];
+```
 
 ### Options
 

@@ -25,7 +25,7 @@ describe 'routehandler',->
   before ->
     @domnode = document.createElement('routehandler')
     @node = document.body.appendChild(@domnode)
-    @tag = riot.mount(@domnode,'routehandler',{options:{hashbang:true},routes,test:'Cheese',page:page})[0]
+    @tag = riot.mount(@domnode,'routehandler',{options:{hashbang:false},routes,test:'Cheese',page:page})[0]
 
   after ->
     @domnode = ''

@@ -13,6 +13,7 @@ routes = [
   ]}
   {route:"/page3/",tag:"page2",routes:[
     {route:"sub/",tag:"page3sub",routes:[
+      {route:"/",tag:"page5"}
       {route:"three/",tag:"page3subsub"}
       {route:"four/",tag:"page2sub"}
     ]} 
@@ -24,7 +25,7 @@ describe 'routehandler',->
   before ->
     @domnode = document.createElement('routehandler')
     @node = document.body.appendChild(@domnode)
-    @tag = riot.mount(@domnode,'routehandler',{routes:routes,test:'Cheese',page:page})[0]
+    @tag = riot.mount(@domnode,'routehandler',{options:{hashbang:true},routes,test:'Cheese',page:page})[0]
 
   after ->
     @domnode = ''
@@ -65,12 +66,16 @@ describe 'routehandler',->
     expect(document.body.innerHTML).to.contain('cris')
 
   it "should have access to root routehandler opts at all levels",->
-    page('/page2/sub/cris/')
+    page('/page2/sub/cris')
     expect(document.body.innerHTML).to.contain('Cheese')
 
   it "should have access to sub sub sub document",->
     page('/page3/sub/three/')
     expect(document.body.innerHTML).to.contain('subsub')
+
+  it "should load default page at the third level",->
+    page('/page3/sub/')
+    expect(document.body.textContent).to.contain('third level default')
 
   it "should not mount a tag if it's already mounted",->
     window.mountcount = 0

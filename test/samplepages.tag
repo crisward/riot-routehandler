@@ -4,6 +4,9 @@ home
 page4
   p Default Page
 
+page5
+  p third level default
+
 page1
   p hello I'm page 1
   p(if="{opts.params.name}") your name is {opts.params.name}

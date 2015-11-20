@@ -19,7 +19,6 @@ routehandler
         page(opts.options)
 
     @mountRoutes = (parent,routes)=>
-      
       route = @findRoute null,routes,(tree,req)=>
         delete opts.routes
         routeopts = opts
@@ -27,7 +26,7 @@ routehandler
         routeopts.params = req.params
         tag = @
         for route,idx in tree
-          if @tagstack[idx] && @tagstack[idx].tagname == route.tag
+          if @tagstack[idx] && @tagstack[idx].tagname == route.tag                 
             nexttag = @tagstack[idx].nexttag
             riot.update()
           else
@@ -50,10 +49,12 @@ routehandler
         subparents = if parents then parents.slice() else []
         subparents.push(route)
         do (subparents)->
-          subroute = (parentpath+route.route).replace(/\/\//g,'/')
-          page subroute, (req,next)->
+          thisroute = route
+          mainroute = (parentpath+route.route).replace(/\/\//g,'/')
+          page mainroute, (req,next)->
             cback(subparents,req)
-            next()
+            next() if thisroute.routes?[0].route=="/"
+
         @findRoute(subparents,route.routes,cback) if route.routes
 
 

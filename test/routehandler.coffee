@@ -13,8 +13,8 @@ routes = [
   ]}
   {route:"/page3/",tag:"page2",routes:[
     {route:"sub/",tag:"page3sub",routes:[
-      {route:"/",tag:"page5"}
       {route:"three/",tag:"page3subsub"}
+      {route:"/",tag:"page5"}
       {route:"four/",tag:"page2sub"}
     ]} 
   ]}

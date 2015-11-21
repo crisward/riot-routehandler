@@ -53,7 +53,7 @@ routehandler
           mainroute = (parentpath+route.route).replace(/\/\//g,'/')
           page mainroute, (req,next)->
             cback(subparents,req)
-            next() if thisroute.routes?[0].route=="/"
+            next() if thisroute.routes?.filter((route)-> route.route=="/").length
 
         @findRoute(subparents,route.routes,cback) if route.routes
 

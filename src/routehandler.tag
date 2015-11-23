@@ -2,8 +2,12 @@ routehandler
   div(riot-tag="{tagname}")
 
   script(type='text/coffeescript').
-    page = require 'page'
-   
+    if require?
+      page = require 'page'
+    else if !window.page?
+      return console.log 'Page.js not found - please check it has been npm installed or included in your page'
+    else
+      page = window.page
     @on 'mount',=>
       @tagstack = []
       if opts.routes
@@ -15,7 +19,6 @@ routehandler
         page(opts.options)
 
     @mountRoutes = (parent,routes)=>
-      
       route = @findRoute null,routes,(tree,req)=>
         delete opts.routes
         routeopts = opts
@@ -23,7 +26,7 @@ routehandler
         routeopts.params = req.params
         tag = @
         for route,idx in tree
-          if @tagstack[idx] && @tagstack[idx].tagname == route.tag
+          if @tagstack[idx] && @tagstack[idx].tagname == route.tag                 
             nexttag = @tagstack[idx].nexttag
             riot.update()
           else
@@ -45,5 +48,13 @@ routehandler
       for route in routes
         subparents = if parents then parents.slice() else []
         subparents.push(route)
-        do (subparents)-> page parentpath+route.route, (req,next)-> cback(subparents,req)
+        do (subparents)->
+          thisroute = route
+          mainroute = (parentpath+route.route).replace(/\/\//g,'/')
+          page mainroute, (req,next)->
+            cback(subparents,req)
+            next() if thisroute.routes?.filter((route)-> route.route=="/").length
+
         @findRoute(subparents,route.routes,cback) if route.routes
+
+

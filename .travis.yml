@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-   - "0.12.7"
+   - "0.12.4"
 
 branches:
   only:
@@ -9,10 +9,16 @@ branches:
 script:
   npm test
 
+after_success:
+  - 'cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/coveralls.js'
+
 sudo: false
 
 before_install:
   npm install
 
 notifications:
-    email: false
+  email: false
+
+addons:
+  sauce_connect:true

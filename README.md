@@ -1,12 +1,20 @@
 # Riot Routehandler
 
-[![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler)
+[![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler) 
+[![Coverage Status](https://coveralls.io/repos/crisward/riot-routehandler/badge.svg?branch=master&service=github)](https://coveralls.io/github/crisward/riot-routehandler?branch=master) 
+[![NPM Downloads](https://img.shields.io/npm/dm/riot-routehandler.svg)](https://www.npmjs.com/package/riot-routehandler)
+[![NPM Downloads](https://img.shields.io/npm/v/riot-routehandler.svg)](https://www.npmjs.com/package/riot-routehandler)
+
 
 ## Installing
 
 ```
 npm install riot-routehandler
 ```
+
+## Demo
+
+Basic demo [here](http://codepen.io/crisward/pen/xwGJpM?editors=101)
 
 ## Usage
 
@@ -100,6 +108,21 @@ passed in function. ie to go to about page
 
 `opts.page('/about/')`
 
+### Default Routes
+
+It is possible to have a default subroute. This can be done by simply using the `/`
+in your subroutes. With the following routes, `subpage` tag will be shown by default
+if you navigate to `/page/`.
+
+```html
+routes = [
+    {route:"/",tag:"home"},
+    {route:"/page/",tag:"settings",routes:[
+      {route:"/",tag:"subpage"},
+      {route:"/another/",tag:"subpage2"},
+    ]}
+  ];
+```
 
 ### Options
 
@@ -125,6 +148,18 @@ is <50 lines of code.
 npm install
 npm test
 ```
+
+## Compatibility
+
+Internet Explorer versions 9 and below don't support the pushstate api, so require the addition of a browser shim to make this work. Page.js recommends <https://github.com/devote/HTML5-History-API>. This is available via a cdn, and if
+included with a conditional comment, would only be loaded in IE9 and below.
+
+```html
+<!--[if lte IE 9 ]>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5-history-api/4.2.2/history.min.js"></script>
+<![endif]-->
+```
+
 
 ## Todo
 

@@ -1,5 +1,5 @@
-riot = require 'riot'
-routehandler = require '../src/routehandler.tag'
+window.riot = require 'riot'
+routehandler = require '../lib/routehandler.js'
 page = require 'page'
 require './samplepages.tag'
 spyclick = null
@@ -8,11 +8,13 @@ routes = [
   {route:"/page1/",tag:"page1"}
   {route:"/page1/:name",tag:"page1"}
   {route:"/page2/",tag:"page2",routes:[
-    {route:"sub/:name?",tag:"page2sub"}
+    {route:"/",tag:"page4"}
+    {route:"/sub/:name?",tag:"page2sub"}
   ]}
   {route:"/page3/",tag:"page2",routes:[
     {route:"sub/",tag:"page3sub",routes:[
       {route:"three/",tag:"page3subsub"}
+      {route:"/",tag:"page5"}
       {route:"four/",tag:"page2sub"}
     ]} 
   ]}
@@ -23,7 +25,7 @@ describe 'routehandler',->
   before ->
     @domnode = document.createElement('routehandler')
     @node = document.body.appendChild(@domnode)
-    @tag = riot.mount(@domnode,'routehandler',{routes:routes,test:'Cheese',page:page})[0]
+    @tag = riot.mount(@domnode,'routehandler',{options:{hashbang:false},routes,test:'Cheese',page:page})[0]
 
   after ->
     @domnode = ''
@@ -40,10 +42,11 @@ describe 'routehandler',->
     page('/')
     expect(document.body.innerHTML).to.contain('Home Page')
 
-  it "should show page2",->
+  it "should show page2 and default page",->
     page('/page2/')
     expect(document.body.innerHTML).to.contain('Page 2')
-    expect(document.body.innerHTML).to.not.contain('subpage')
+    expect(document.body.textContent).to.not.contain('subpage')
+    expect(document.body.textContent).to.contain('Default Page')
 
   it "should show sub page",->
     page('/page2/sub/')
@@ -63,12 +66,16 @@ describe 'routehandler',->
     expect(document.body.innerHTML).to.contain('cris')
 
   it "should have access to root routehandler opts at all levels",->
-    page('/page2/sub/cris/')
+    page('/page2/sub/cris')
     expect(document.body.innerHTML).to.contain('Cheese')
 
   it "should have access to sub sub sub document",->
     page('/page3/sub/three/')
     expect(document.body.innerHTML).to.contain('subsub')
+
+  it "should load default page at the third level",->
+    page('/page3/sub/')
+    expect(document.body.textContent).to.contain('third level default')
 
   it "should not mount a tag if it's already mounted",->
     window.mountcount = 0
@@ -123,3 +130,5 @@ describe 'routehandler',->
     expect(document.body.innerHTML).to.contain("hello I'm page 1")
     page('/page1/cris')
     expect(document.body.innerHTML).to.contain('cris')
+
+

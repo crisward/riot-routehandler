@@ -10,6 +10,9 @@ routehandler
       page = window.page
     @on 'mount',=>
       @tagstack = []
+      if opts.routeroptions and opts.routeroptions.pagehandlers?
+        for p of opts.routeroptions.pagehandlers
+          page p, opts.routeroptions.pagehandlers[p]
       if opts.routes
         @mountRoutes({handler:@},opts.routes)
         if opts.options?.base

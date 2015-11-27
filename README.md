@@ -130,6 +130,24 @@ Any options your want to pass into the [page.js](https://github.com/visionmedia/
 system can be done via `routeroptions`. The above example is using hashbang routing.
 Other options can be [found here](https://github.com/visionmedia/page.js#pageoptions)
 
+Also, setting pagehandlers directly is possible using the `pagehandlers` field in `routeroptions`.
+For example, to enable page transitions:
+
+      routeroptions.pagehandlers = {
+        '*': function(ctx, next) {
+          if (window.url !== ctx.canonicalPath) {
+            window.url = ctx.canonicalPath;
+            $('#content').addClass('fadeout').removeClass('fadein');
+            return setTimeout(function() {
+              $('#content').addClass('fadein').removeClass('fadeout');
+              window.loadingbar.go(100);
+              return next();
+            }, 400);
+          } else {
+            return next();
+          }
+        }
+      };
 
 ## About
 

@@ -1,6 +1,6 @@
 {
   "name": "riot-routehandler",
-  "version": "1.1.0",
+  "version": "1.1.01",
   "description": "A angular-ui-router inspired router handler for riot.js",
   "main": "lib/routehandler.js",
   "repository": "crisward/riot-routehandler",

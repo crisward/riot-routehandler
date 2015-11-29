@@ -2,6 +2,7 @@ routehandler
   div(riot-tag="{tagname}")
 
   script(type='text/coffeescript').
+    page = null
     if require?
       page = require 'page'
     else if !window.page?
@@ -22,8 +23,7 @@ routehandler
       route = @findRoute null,routes,(tree,req)=>
         delete opts.routes
         routeopts = opts
-        routeopts.page = page
-        routeopts.params = req.params
+        routeopts.page = page        routeopts.params = req.params
         tag = @
         for route,idx in tree
           if @tagstack[idx] && @tagstack[idx].tagname == route.tag                 
@@ -46,14 +46,17 @@ routehandler
     @findRoute = (parents,routes,cback)=>
       parentpath = if parents then parents.map((ob)->ob.route).join("").replace(/\/\//g,'/') else ""
       for route in routes
-        subparents = if parents then parents.slice() else []
-        subparents.push(route)
-        do (subparents)->
-          thisroute = route
-          mainroute = (parentpath+route.route).replace(/\/\//g,'/')
-          page mainroute, (req,next)->
-            cback(subparents,req)
-            next() if thisroute.routes?.filter((route)-> route.route=="/").length
+        if route.tag?
+          subparents = if parents then parents.slice() else []
+          subparents.push(route)
+          do (subparents)->
+            thisroute = route
+            mainroute = (parentpath+route.route).replace(/\/\//g,'/')
+            page mainroute, (req,next)->
+              cback(subparents,req)
+              next() if thisroute.routes?.filter((route)-> route.route=="/").length
+        else if route.use? && typeof route.use == "function"
+          page(route.route,route.use.bind(page))
 
         @findRoute(subparents,route.routes,cback) if route.routes
 

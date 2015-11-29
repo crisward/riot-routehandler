@@ -6,7 +6,7 @@
   "repository": "crisward/riot-routehandler",
   "scripts": {
     "test": "karma start",
-    "tdd": "npm run watch & karma start --reporters=spec --singleRun=false",
+    "tdd": "npm run watch & karma start --reporters=spec --browsers=Chrome --singleRun=false",
     "watch": "riot -w src lib --template jade",
     "build": "riot src lib --template jade"
   },
@@ -51,6 +51,7 @@
     "karma": "^0.13.9",
     "karma-browserify": "^4.3.0",
     "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.1",
     "karma-coverage": "^0.5.0",
     "karma-mocha": "^0.1",
     "karma-phantomjs-launcher": "^0.1",

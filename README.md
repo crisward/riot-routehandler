@@ -124,6 +124,33 @@ routes = [
   ];
 ```
 
+### Middleware
+
+It is sometimes useful to run code before a tag is displayed, perhaps for permission
+checking or even animation (ie changing classes on the body tag)
+
+This is possible by passing functions into the router in the form of middleware. 
+Each middleware function will be passed a context object and a next callback. `this` within 
+your middleware will be bound to the `page` object so you have access to the various
+page methods. eg.
+
+```javascript
+var auth = function(ctx,next){
+  if(loggedin) return next();
+  this.redirect('/login')
+}
+
+routes = [
+    {route:"/",tag:"home"},
+    {route:"/admin/",use:auth},
+    {route:"/admin/",tag:"adminpanel",routes:[
+      {route:"/",tag:"mainadmin"},
+      {route:"/user/",tag:"useradmin"},
+    ]}
+  ];
+
+```
+
 ### Options
 
 Any options your want to pass into the [page.js](https://github.com/visionmedia/page.js) 

@@ -3,8 +3,20 @@ routehandler = require '../lib/routehandler.js'
 page = require 'page'
 require './samplepages.tag'
 spyclick = null
+test = {}
+test = 
+  middleware1:(ctx,next)->
+    window.middleran1 = true
+    next()
+  middleware2:(ctx,next)->
+    window.middleran2 = true
+    this.redirect('/page1/')
+
+
 routes = [
+  {route:"*",use:test.middleware1}
   {route:"/",tag:"home"}
+  {route:"/page100/",use:test.middleware2}
   {route:"/page1/",tag:"page1"}
   {route:"/page1/:name",tag:"page1"}
   {route:"/page2/",tag:"page2",routes:[
@@ -30,6 +42,20 @@ describe 'routehandler',->
   after ->
     @domnode = ''
     @tag.unmount()
+
+  it "should call middleware on base route",->
+    window.middleran1 = false
+    page('/')
+    expect(window.middleran1).to.be.true
+
+
+  it "should redirect from middleware",(done)->
+    window.middleran2 = false
+    page('/page100/')
+    expect(window.middleran2).to.be.true
+    setTimeout ->
+      expect(document.body.innerHTML).to.contain("hello I'm page 1")
+      done()
 
   it "should exist on the page",->
     expect(document.querySelectorAll('routehandler').length).to.equal(1)

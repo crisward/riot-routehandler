@@ -8,6 +8,9 @@ routehandler
       return console.log 'Page.js not found - please check it has been npm installed or included in your page'
     else
       page = window.page
+
+    @page = page
+
     @on 'mount',=>
       @tagstack = []
       if opts.routeroptions and opts.routeroptions.pagehandlers?

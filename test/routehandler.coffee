@@ -8,15 +8,18 @@ test =
   middleware1:(ctx,next)->
     window.middleran1 = true
     next()
-  middleware2:(ctx,next)->
+  middleware2:(ctx,next,page)->
     window.middleran2 = true
-    this.redirect('/page1/')
+    page.redirect('/page1/')
+  middleware3:(ctx,next,page)->
+    window.middleran3 = true
 
 
 routes = [
   {route:"*",use:test.middleware1}
   {route:"/",tag:"home"}
   {route:"/page100/",use:test.middleware2}
+  {route:"/page101/",use:test.middleware3,tag:"page1"}
   {route:"/page1/",tag:"page1"}
   {route:"/page1/:name",tag:"page1"}
   {route:"/page2/",tag:"page2",routes:[
@@ -30,6 +33,7 @@ routes = [
       {route:"four/",tag:"page2sub"}
     ]} 
   ]}
+  
 ]
 
 describe 'routehandler',->
@@ -56,6 +60,11 @@ describe 'routehandler',->
     setTimeout ->
       expect(document.body.innerHTML).to.contain("hello I'm page 1")
       done()
+
+  it "should run middleware when declaired on same line as tag",->
+    window.middleran3 = false
+    page('/page101/')
+    expect(window.middleran3).to.be.true
 
   it "should exist on the page",->
     expect(document.querySelectorAll('routehandler').length).to.equal(1)

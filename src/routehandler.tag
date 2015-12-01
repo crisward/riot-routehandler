@@ -46,6 +46,9 @@ routehandler
     @findRoute = (parents,routes,cback)=>
       parentpath = if parents then parents.map((ob)->ob.route).join("").replace(/\/\//g,'/') else ""
       for route in routes
+        if route.use? && typeof route.use == "function"
+          do (route)->
+            page(route.route,(ctx,next)-> route.use(ctx,next,page))
         if route.tag?
           subparents = if parents then parents.slice() else []
           subparents.push(route)
@@ -55,8 +58,7 @@ routehandler
             page mainroute, (req,next)->
               cback(subparents,req)
               next() if thisroute.routes?.filter((route)-> route.route=="/").length
-        else if route.use? && typeof route.use == "function"
-          page(route.route,route.use.bind(page))
+
 
         @findRoute(subparents,route.routes,cback) if route.routes
 

@@ -130,14 +130,13 @@ It is sometimes useful to run code before a tag is displayed, perhaps for permis
 checking or even animation (ie changing classes on the body tag)
 
 This is possible by passing functions into the router in the form of middleware. 
-Each middleware function will be passed a context object and a next callback. `this` within 
-your middleware will be bound to the `page` object so you have access to the various
-page methods. eg.
+Each middleware function will be passed a context object, a next callback and a reference
+to the `page` instance so you have access to the various page methods. eg.
 
 ```javascript
-var auth = function(ctx,next){
+var auth = function(ctx,next,page){
   if(loggedin) return next();
-  this.redirect('/login')
+  page.redirect('/login')
 }
 
 routes = [

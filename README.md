@@ -167,7 +167,7 @@ matching as express.js. Also thought this would aid in making this work server
 side eventually. Finally I wanted something to be small and simple in the spirit of riot.
 Angular ui-router does a ton of stuff I never use, so I've kept this to do
 exaclty what I need and no more. Page.js is apparently 1200bytes and this library
-is <50 lines of code.
+is <60 lines of code.
 
 
 ## Running Tests

@@ -100,6 +100,12 @@ all sub-routehandlers too. This can be useful for passing down 'stores'.
 
 `app = riot.mount('routehandler',{routes:routes,routeroptions:{hashbang:true},stores:stores})`
 
+### Options
+
+Any options your want to pass into the [page.js](https://github.com/visionmedia/page.js) 
+system can be done via `routeroptions`. The above example is using hashbang routing.
+Other options can be [found here](https://github.com/visionmedia/page.js#pageoptions)
+
 ### Navigation
 
 Navigation can be done programmatically via opts.page. Riot-routehandler
@@ -150,11 +156,7 @@ routes = [
 
 ```
 
-### Options
 
-Any options your want to pass into the [page.js](https://github.com/visionmedia/page.js) 
-system can be done via `routeroptions`. The above example is using hashbang routing.
-Other options can be [found here](https://github.com/visionmedia/page.js#pageoptions)
 
 
 ## About

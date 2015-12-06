@@ -47,7 +47,7 @@ describe 'routehandler',->
   before ->
     @domnode = document.createElement('app')
     @node = document.body.appendChild(@domnode)
-    @tag = riot.mount(@domnode,'app',{options:{hashbang:false,basepath:'/'},routes,test:'Cheese'})[0]
+    @tag = riot.mount(@domnode,'app',{options:{hashbang:false,base:'/test'},routes,test:'Cheese'})[0]
 
   after ->
     @domnode = ''
@@ -177,25 +177,25 @@ describe 'routehandler',->
 
   it "should change route after middleware",->
     # https://github.com/crisward/riot-routehandler/issues/4
-    simulant.fire( document.querySelector('a[href="/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/"]'), 'click' )
     expect(document.body.textContent).to.contain('Home Page')
 
-    simulant.fire( document.querySelector('a[href="/page102/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
     expect(document.body.textContent).to.contain('hello middleware')
 
-    simulant.fire( document.querySelector('a[href="/page1/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
     expect(document.body.textContent).to.contain("hello I'm page 1")
 
-    simulant.fire( document.querySelector('a[href="/page102/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
     expect(document.body.textContent).to.contain('hello middleware')
 
-    simulant.fire( document.querySelector('a[href="/page1/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
     expect(document.body.textContent).to.contain("hello I'm page 1")
 
-    simulant.fire( document.querySelector('a[href="/page102/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
     expect(document.body.textContent).to.contain('hello middleware')
 
-    simulant.fire( document.querySelector('a[href="/page1/"]'), 'click' )
+    simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
     expect(document.body.textContent).to.contain("hello I'm page 1")
 
 

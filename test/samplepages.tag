@@ -1,7 +1,7 @@
 app
-  a(href="/") home
-  a(href="/page1/") page1
-  a(href="/page102/") middleware
+  a(href="/test/") home
+  a(href="/test/page1/") page1
+  a(href="/test/page102/") middleware
 
   routehandler(options="{opts.options}",routes="{opts.routes}",test="{opts.test}")
 

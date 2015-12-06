@@ -1,5 +1,6 @@
 module.exports = {
   browsers: {
+    'PhantomJS',
     slsafari: {
       base: 'SauceLabs',
       browserName: 'safari',

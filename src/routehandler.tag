@@ -23,21 +23,20 @@ routehandler
       route = @findRoute null,routes,(tree,req)=>
         delete opts.routes
         routeopts = opts
-        routeopts.page = page        routeopts.params = req.params
+        routeopts.page = page        
+        routeopts.params = req.params
         tag = @
         for route,idx in tree
-          if @tagstack[idx] && @tagstack[idx].tagname == route.tag                 
+          if @tagstack[idx] && @tagstack[idx].tagname == route.tag            
             nexttag = @tagstack[idx].nexttag
             riot.update()
           else
-            nexttag = tag.setTag(route.tag,routeopts)
+            nexttag = tag.setTag(route.tag,routeopts) if route?.tag #dont mount middlware
           @tagstack[idx] = {tagname:route.tag,nexttag:nexttag,tag:tag}
-
-          tag = nexttag[0].tags.routehandler
+          tag = nexttag?[0]?.tags.routehandler
         while idx < @tagstack.length
           removeTag = @tagstack.pop()
           removeTag.nexttag[0].unmount(true)
-
 
     @setTag = (tagname,routeopts)=>
       @update(tagname:tagname)
@@ -48,7 +47,10 @@ routehandler
       for route in routes
         if route.use? && typeof route.use == "function"
           do (route)->
-            page(route.route,(ctx,next)-> route.use(ctx,next,page))
+            page route.route,(ctx,next)-> 
+              route.use(ctx,next,page)
+              cback([route],ctx) if route.route !="*" #dont call unmount with wild
+
         if route.tag?
           subparents = if parents then parents.slice() else []
           subparents.push(route)
@@ -61,5 +63,3 @@ routehandler
 
 
         @findRoute(subparents,route.routes,cback) if route.routes
-
-

@@ -11,6 +11,7 @@ script:
 
 after_success:
   - 'cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/coveralls.js'
+  - 'cat ./coverage/report-lcov/lcov.info' #just want to see if this contains anything
 
 sudo: false
 

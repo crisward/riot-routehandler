@@ -47,11 +47,13 @@ describe 'routehandler',->
   before ->
     @domnode = document.createElement('app')
     @node = document.body.appendChild(@domnode)
-    @tag = riot.mount(@domnode,'app',{options:{hashbang:false},routes,test:'Cheese'})[0]
+    @tag = riot.mount(@domnode,'app',{options:{hashbang:false,basepath:'/'},routes,test:'Cheese'})[0]
 
   after ->
     @domnode = ''
     @tag.unmount()
+
+
 
   it "should call middleware on base route",->
     window.middleran1 = false
@@ -195,3 +197,7 @@ describe 'routehandler',->
 
     simulant.fire( document.querySelector('a[href="/page1/"]'), 'click' )
     expect(document.body.textContent).to.contain("hello I'm page 1")
+
+
+ 
+

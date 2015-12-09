@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.2.2]
+### Bugfix
+* Tags not remounting after middlware (issue #4)
 
 ## [1.2.1]
 ### Added

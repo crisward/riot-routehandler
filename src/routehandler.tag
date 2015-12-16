@@ -33,7 +33,7 @@ routehandler
           else
             nexttag = tag.setTag(route.tag,routeopts) if route?.tag #dont mount middlware
           @tagstack[idx] = {tagname:route.tag,nexttag:nexttag,tag:tag}
-          tag = nexttag?[0]?.tags.routehandler
+          tag = nexttag?[0]?.tags.routehandler || nexttag?[0]?.root.querySelector('routehandler')?._tag
         while idx < @tagstack.length
           removeTag = @tagstack.pop()
           removeTag.nexttag[0].unmount(true)

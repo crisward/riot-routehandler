@@ -5,6 +5,14 @@ app
 
   routehandler(options="{opts.options}",routes="{opts.routes}",test="{opts.test}")
 
+hiddenhandler
+  <yield />
+
+hiddensub
+  p hello hidden sub
+  hiddenhandler
+    routehandler
+
 home
   p hello I'm a Home Page
 

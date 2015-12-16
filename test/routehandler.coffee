@@ -39,7 +39,9 @@ routes = [
       {route:"four/",tag:"page2sub"}
     ]} 
   ]}
-  
+  {route:"/page103/",tag:"hiddensub",routes:[
+    {route:"/page104",tag:"page4"}
+  ]}
 ]
 
 describe 'routehandler',->
@@ -174,7 +176,6 @@ describe 'routehandler',->
     page('/page1/cris')
     expect(document.body.textContent).to.contain('cris')
 
-
   it "should change route after middleware",->
     # https://github.com/crisward/riot-routehandler/issues/4
     simulant.fire( document.querySelector('a[href="/test/"]'), 'click' )
@@ -198,6 +199,12 @@ describe 'routehandler',->
     simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
     expect(document.body.textContent).to.contain("hello I'm page 1")
 
+  it "should use routehandlers in yielded tags",->
+    page('/page103/')
+    expect(document.body.textContent).to.contain('hello hidden sub')
+    page('/page103/page104')
+    expect(document.body.textContent).to.contain('hello hidden sub')
+    expect(document.body.textContent).to.contain('Default Page')
 
  
 

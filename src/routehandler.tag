@@ -31,7 +31,7 @@ routehandler
             nexttag = @tagstack[idx].nexttag
             riot.update()
           else
-            nexttag = tag.setTag(route.tag,routeopts) if route?.tag #dont mount middlware
+            nexttag = tag.setTag(route.tag,routeopts) if tag && route?.tag #dont mount middlware
           @tagstack[idx] = {tagname:route.tag,nexttag:nexttag,tag:tag}
           tag = nexttag?[0]?.tags.routehandler || nexttag?[0]?.root.querySelector('routehandler')?._tag
         while idx < @tagstack.length

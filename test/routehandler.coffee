@@ -18,7 +18,9 @@ test =
     window.middleran4 = true
     router = document.querySelector("routehandler");
     router._tag.setTag("middleware");
-
+  middleware5:(ctx,next,page)->
+    window.middleran5 = true
+    next()
 
 routes = [
   {route:"*",use:test.middleware1}
@@ -37,6 +39,9 @@ routes = [
       {route:"three/",tag:"page3subsub"}
       {route:"/",tag:"page5"}
       {route:"four/",tag:"page2sub"}
+      {route:"five/",use:test.middleware5}
+      {route:"five/",tag:"page6"}
+      
     ]} 
   ]}
   {route:"/page103/",tag:"hiddensub",routes:[
@@ -55,7 +60,8 @@ describe 'routehandler',->
     @domnode = ''
     @tag.unmount()
 
-
+  it "should exist on the page",->
+    expect(document.querySelectorAll('routehandler').length).to.equal(1)
 
   it "should call middleware on base route",->
     window.middleran1 = false
@@ -75,9 +81,6 @@ describe 'routehandler',->
     window.middleran3 = false
     page('/page101/')
     expect(window.middleran3).to.be.true
-
-  it "should exist on the page",->
-    expect(document.querySelectorAll('routehandler').length).to.equal(1)
 
   it "should allow deep routes, event if previous route was not a parent",->
     page('/page2/sub/')
@@ -113,10 +116,6 @@ describe 'routehandler',->
   it "should have access to root routehandler opts at all levels",->
     page('/page2/sub/cris')
     expect(document.body.textContent).to.contain('Cheese')
-
-  it "should have access to sub sub sub document",->
-    page('/page3/sub/three/')
-    expect(document.body.textContent).to.contain('subsub')
 
   it "should load default page at the third level",->
     page('/page3/sub/')
@@ -163,12 +162,6 @@ describe 'routehandler',->
     page('/page2/')
     expect(window.mountcount).to.equal(0)
 
-  it "should switch subsubtags",->
-    page('/page3/sub/three/')
-    expect(document.body.textContent).to.contain('subsub')
-    page('/page3/sub/four/')
-    expect(document.body.textContent).to.contain("I'm a subpage")
-
   it "should update properties when path changes",->
     page('/page1/')
     expect(document.body.textContent).not.to.contain('cris')
@@ -179,7 +172,7 @@ describe 'routehandler',->
   it "should change route after middleware",->
     # https://github.com/crisward/riot-routehandler/issues/4
     simulant.fire( document.querySelector('a[href="/test/"]'), 'click' )
-    expect(document.body.textContent).to.contain('Home Page')
+    expect(@domnode.textContent).to.contain('Home Page')
 
     simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
     expect(document.body.textContent).to.contain('hello middleware')
@@ -206,5 +199,22 @@ describe 'routehandler',->
     expect(document.body.textContent).to.contain('hello hidden sub')
     expect(document.body.textContent).to.contain('Default Page')
 
- 
+  it "should have access to sub sub sub document",->
+    page('/page3/sub/three/')
+    expect(document.body.textContent).to.contain('subsub')
 
+  it "should switch subsubtags",->
+    page('/page3/sub/three/')
+    expect(document.body.textContent).to.contain('subsub')
+    page('/page3/sub/four/')
+    expect(document.body.textContent).to.contain("I'm a subpage")
+
+  it "should run middleware on subroute",->
+    expect(window.middleran5).to.be.undefined
+    page('/page3/sub/five/')
+    expect(window.middleran5).to.be.true
+
+  it "should show page five with submiddleware with next",->
+    page('/page3/sub/five/')
+    expect(@domnode.textContent).to.contain("run after submiddle")
+ 

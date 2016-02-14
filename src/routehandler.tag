@@ -47,9 +47,10 @@ routehandler
       for route in routes
         if route.use? && typeof route.use == "function"
           do (route)->
-            page route.route,(ctx,next)-> 
+            mainroute = (parentpath+route.route).replace(/\/\//g,'/')
+            page mainroute,(ctx,next)->
+              cback([route],ctx) if mainroute !="*" #dont call unmount with wild
               route.use(ctx,next,page)
-              cback([route],ctx) if route.route !="*" #dont call unmount with wild
 
         if route.tag?
           subparents = if parents then parents.slice() else []

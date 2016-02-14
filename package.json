@@ -59,7 +59,7 @@
     "karma-sinon": "^1.0.4",
     "karma-spec-reporter": "0.0.20",
     "mocha": "^2.0.1",
-    "riot": "2.2.4",
+    "riot": "^2.3.15",
     "riotify": "^0.1.2",
     "simulant": "^0.1.5",
     "sinon": "^1.12.2",

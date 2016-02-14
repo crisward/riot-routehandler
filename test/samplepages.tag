@@ -22,6 +22,9 @@ page4
 page5
   p third level default
 
+page6
+  p run after submiddle
+
 middleware
   h3 hello middleware
 

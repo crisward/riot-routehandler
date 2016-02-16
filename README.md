@@ -27,7 +27,7 @@ Mount will be called when your tag is added and unmount will be called when it i
 
 ```javascript
 //app.js
-riot = require('riot');
+var riot = require('riot');
 require('riot-routehandler');
 require('home.tag')
 require('about.tag')
@@ -35,7 +35,7 @@ require('settings.tag')
 require('settings1.tag')
 require('settings2.tag')
 
-routes = [
+var routes = [
     {route:"/",tag:"home"},
     {route:"/about/",tag:"about"},
     {route:"/settings/",tag:"settings",routes:[
@@ -44,7 +44,7 @@ routes = [
     ]}
   ];
 
-app = riot.mount('routehandler',{routes:routes,routeroptions:{hashbang:true}});
+var app = riot.mount('routehandler',{routes:routes,routeroptions:{hashbang:true}});
 ```
 
 You'll also need to add the routehandler to your html file.

@@ -200,7 +200,9 @@ included with a conditional comment, would only be loaded in IE9 and below.
 Thanks to vision media for [page.js](https://github.com/visionmedia/page.js) which this depends on and the
 other routers which inspired this including [angular-ui-router](https://github.com/angular-ui/ui-router)
 
-Thanks also to [coderofsalvation](https://github.com/coderofsalvation) for his middleware suggestion.
+
+Thanks also to [coderofsalvation](https://github.com/coderofsalvation) for his middleware suggestion
+and the [Noun Project](https://thenounproject.com/) for the logo.
 
 ## License
 

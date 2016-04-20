@@ -1,4 +1,4 @@
-<img src="ttps://cdn.rawgit.com/crisward/riot-routehandler/master/routehandler-logo.svg" alt="logo" height="150" />
+<img src="https://cdn.rawgit.com/crisward/riot-routehandler/master/routehandler-logo.svg" alt="logo" height="150" />
 
 [![Build Status](https://travis-ci.org/crisward/riot-routehandler.svg)](https://travis-ci.org/crisward/riot-routehandler) 
 [![Coverage Status](https://coveralls.io/repos/crisward/riot-routehandler/badge.svg?branch=master&service=github)](https://coveralls.io/github/crisward/riot-routehandler?branch=master)

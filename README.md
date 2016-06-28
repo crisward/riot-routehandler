@@ -44,7 +44,7 @@ var routes = [
     ]}
   ];
 
-var app = riot.mount('routehandler',{routes:routes,routeroptions:{hashbang:true}});
+var app = riot.mount('routehandler',{routes:routes,options:{hashbang:true}});
 ```
 
 You'll also need to add the routehandler to your html file.
@@ -98,12 +98,12 @@ So in the example above, the name parameter would be accessed as...
 Any properties passed into the top level routehandler will be passed into
 all sub-routehandlers too. This can be useful for passing down 'stores'.
 
-`app = riot.mount('routehandler',{routes:routes,routeroptions:{hashbang:true},stores:stores})`
+`app = riot.mount('routehandler',{routes:routes,options:{hashbang:true},stores:stores})`
 
 ### Options
 
 Any options your want to pass into the [page.js](https://github.com/visionmedia/page.js) 
-system can be done via `routeroptions`. The above example is using hashbang routing.
+system can be done via `options`. The above example is using hashbang routing.
 Other options can be [found here](https://github.com/visionmedia/page.js#pageoptions)
 
 ### Navigation

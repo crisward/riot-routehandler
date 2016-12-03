@@ -5,12 +5,17 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/riot-routehandler.svg)](https://www.npmjs.com/package/riot-routehandler)
 [![NPM Downloads](https://img.shields.io/npm/v/riot-routehandler.svg)](https://www.npmjs.com/package/riot-routehandler)
 
-
 ## Installing
 
 ```
-npm install riot-routehandler
+npm install riot-routehandler@1.2.3 # for riot 2, riot 3 version coming soon
 ```
+
+## Versions
+
+This branch is for Riot v3.*, I've only recently updated this and still have a failing test, 
+so will hold off pushing to npm until it's finished.
+I've forked a branch for Riot v2.* and will maintain that if neccessary going forward.
 
 ## Demo
 

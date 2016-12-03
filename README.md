@@ -7,7 +7,7 @@
 
 ## Installing
 
-```
+```bash
 npm install riot-routehandler@1.2.3 # for riot 2, riot 3 version coming soon
 ```
 

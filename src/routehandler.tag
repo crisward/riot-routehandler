@@ -1,5 +1,5 @@
 routehandler
-  div(riot-tag="{tagname}")
+  div(data-is="{tagname}")
 
   script(type='text/coffeescript').
     page = null
@@ -36,7 +36,7 @@ routehandler
           tag = nexttag?[0]?.tags.routehandler || nexttag?[0]?.root.querySelector('routehandler')?._tag
         while idx < @tagstack.length
           removeTag = @tagstack.pop()
-          removeTag.nexttag[0].unmount(true)
+          removeTag.nexttag[0]?.unmount(true)
 
     @setTag = (tagname,routeopts)=>
       @update(tagname:tagname)

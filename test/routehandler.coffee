@@ -60,31 +60,11 @@ describe 'routehandler',->
     @domnode = ''
     @tag.unmount()
 
+  afterEach ->
+    delete window.middleran5
+
   it "should exist on the page",->
     expect(document.querySelectorAll('routehandler').length).to.equal(1)
-
-  it "should call middleware on base route",->
-    window.middleran1 = false
-    page('/')
-    expect(window.middleran1).to.be.true
-
-
-  it "should redirect from middleware",(done)->
-    window.middleran2 = false
-    page('/page100/')
-    expect(window.middleran2).to.be.true
-    setTimeout ->
-      expect(document.body.textContent).to.contain("hello I'm page 1")
-      done()
-
-  it "should run middleware when declaired on same line as tag",->
-    window.middleran3 = false
-    page('/page101/')
-    expect(window.middleran3).to.be.true
-
-  it "should allow deep routes, event if previous route was not a parent",->
-    page('/page2/sub/')
-    expect(document.body.textContent).to.contain('subpage')
 
   it "should show home page",->
     page('/')
@@ -94,9 +74,13 @@ describe 'routehandler',->
     page('/page2/')
     expect(document.body.textContent).to.contain('Page 2')
     expect(document.body.textContent).to.not.contain('subpage')
-    expect(document.body.textContent).to.contain('Default Page')
-
+    expect(document.body.textContent).to.contain('Default Page')    
+  
   it "should show sub page",->
+    page('/page2/sub/')
+    expect(document.body.textContent).to.contain('subpage') 
+
+  it "should allow deep routes, event if previous route was not a parent",->
     page('/page2/sub/')
     expect(document.body.textContent).to.contain('subpage')
 
@@ -162,36 +146,6 @@ describe 'routehandler',->
     page('/page2/')
     expect(window.mountcount).to.equal(0)
 
-  it "should update properties when path changes",->
-    page('/page1/')
-    expect(document.body.textContent).not.to.contain('cris')
-    expect(document.body.textContent).to.contain("hello I'm page 1")
-    page('/page1/cris')
-    expect(document.body.textContent).to.contain('cris')
-
-  it "should change route after middleware",->
-    # https://github.com/crisward/riot-routehandler/issues/4
-    simulant.fire( document.querySelector('a[href="/test/"]'), 'click' )
-    expect(@domnode.textContent).to.contain('Home Page')
-
-    simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
-    expect(document.body.textContent).to.contain('hello middleware')
-
-    simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
-    expect(document.body.textContent).to.contain("hello I'm page 1")
-
-    simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
-    expect(document.body.textContent).to.contain('hello middleware')
-
-    simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
-    expect(document.body.textContent).to.contain("hello I'm page 1")
-
-    simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
-    expect(document.body.textContent).to.contain('hello middleware')
-
-    simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
-    expect(document.body.textContent).to.contain("hello I'm page 1")
-
   it "should use routehandlers in yielded tags",->
     page('/page103/')
     expect(document.body.textContent).to.contain('hello hidden sub')
@@ -203,18 +157,69 @@ describe 'routehandler',->
     page('/page3/sub/three/')
     expect(document.body.textContent).to.contain('subsub')
 
+  it "should show page five with submiddleware with next",->
+    page('/page3/sub/five/')
+    expect(@domnode.textContent).to.contain("run after submiddle")
+    
+
   it "should switch subsubtags",->
     page('/page3/sub/three/')
     expect(document.body.textContent).to.contain('subsub')
     page('/page3/sub/four/')
     expect(document.body.textContent).to.contain("I'm a subpage")
-
-  it "should run middleware on subroute",->
-    expect(window.middleran5).to.be.undefined
-    page('/page3/sub/five/')
-    expect(window.middleran5).to.be.true
-
-  it "should show page five with submiddleware with next",->
-    page('/page3/sub/five/')
-    expect(@domnode.textContent).to.contain("run after submiddle")
  
+  it.skip "should update properties when path changes",->
+    page('/page1/')
+    expect(document.body.textContent).not.to.contain('cris')
+    expect(document.body.textContent).to.contain("hello I'm page 1")
+    page('/page1/cris')
+    expect(document.body.textContent).to.contain('cris')
+
+  describe "Middleware",->
+
+    it "should call middleware on base route",->
+      window.middleran1 = false
+      page('/')
+      expect(window.middleran1).to.be.true
+
+    it "should redirect from middleware",(done)->
+      window.middleran2 = false
+      page('/page100/')
+      expect(window.middleran2).to.be.true
+      setTimeout ->
+        expect(document.body.textContent).to.contain("hello I'm page 1")
+        done()
+    
+    it "should change route after middleware",->
+      # https://github.com/crisward/riot-routehandler/issues/4
+      simulant.fire( document.querySelector('a[href="/test/"]'), 'click' )
+      expect(@domnode.textContent).to.contain('Home Page')
+
+      simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
+      expect(document.body.textContent).to.contain('hello middleware')
+
+      simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
+      expect(document.body.textContent).to.contain("hello I'm page 1")
+
+      simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
+      expect(document.body.textContent).to.contain('hello middleware')
+
+      simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
+      expect(document.body.textContent).to.contain("hello I'm page 1")
+
+      simulant.fire( document.querySelector('a[href="/test/page102/"]'), 'click' )
+      expect(document.body.textContent).to.contain('hello middleware')
+
+      simulant.fire( document.querySelector('a[href="/test/page1/"]'), 'click' )
+      expect(document.body.textContent).to.contain("hello I'm page 1")
+
+    it "should run middleware when declaired on same line as tag",->
+      window.middleran3 = false
+      page('/page101/')
+      expect(window.middleran3).to.be.true
+
+    it "should run middleware on subroute",->
+      expect(window.middleran5).to.be.undefined
+      page('/page3/sub/five/')
+      expect(window.middleran5).to.be.true
+    

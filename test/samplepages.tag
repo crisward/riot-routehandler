@@ -30,7 +30,7 @@ middleware
 
 page1
   p hello I'm page 1
-  p(if="{opts.params.name}") your name is {opts.params.name}
+  p your name is {opts.params ? opts.params.name : ''}
 
   script(type='text/coffeescript').
     @on 'mount',->
@@ -44,7 +44,7 @@ page2
   routehandler
 
 page2sub
-  p I'm a subpage {opts.params.name}
+  p(if="{opts.params}") I'm a subpage {opts.params.name}
   p Mmm {opts.test}
 
   script(type='text/coffeescript').

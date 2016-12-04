@@ -13,8 +13,8 @@ npm install riot-routehandler@1.2.3 # for riot 2, riot 3 version coming soon
 
 ## Versions
 
-This branch is for Riot v3 I've only recently updated this and still have a failing test, 
-so will hold off pushing to npm until it's finished.
+This branch is for Riot v3 I've only recently updated this and still have a failing test (related to https://github.com/riot/riot/issues/2102), 
+so will hold off pushing to npm until it's fixed.
 I've forked a branch for Riot v2 and will maintain that if neccessary going forward.
 
 ## Demo

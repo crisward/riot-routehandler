@@ -3,7 +3,7 @@ routehandler
 
   script(type='text/coffeescript').
     page = null
-    if require?
+    if typeof exports == "object" && exports?
       page = require 'page'
     else if !window.page?
       return console.log 'Page.js not found - please check it has been npm installed or included in your page'

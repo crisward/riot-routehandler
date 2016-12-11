@@ -40,7 +40,11 @@ routehandler
 
     @setTag = (tagname,routeopts)=>
       @update(tagname:tagname)
-      riot.mount(tagname,routeopts)
+      tag = riot.mount(tagname,routeopts)
+      tag[0].opts = routeopts
+      tag[0].update()
+      tag
+
 
     @findRoute = (parents,routes,cback)=>
       parentpath = if parents then parents.map((ob)->ob.route).join("").replace(/\/\//g,'/') else ""

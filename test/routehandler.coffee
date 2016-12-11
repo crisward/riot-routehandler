@@ -168,7 +168,7 @@ describe 'routehandler',->
     page('/page3/sub/four/')
     expect(document.body.textContent).to.contain("I'm a subpage")
  
-  it.skip "should update properties when path changes",->
+  it "should update properties when path changes",->
     page('/page1/')
     expect(document.body.textContent).not.to.contain('cris')
     expect(document.body.textContent).to.contain("hello I'm page 1")

@@ -7,8 +7,8 @@
   "scripts": {
     "test": "karma start",
     "tdd": "npm run watch & karma start --reporters=spec --browsers=Chrome --singleRun=false",
-    "watch": "riot -w src lib --template jade",
-    "build": "riot src lib --template jade"
+    "watch": "riot -w src lib --template pug",
+    "build": "riot src lib --template pug"
   },
   "directories": {
     "lib": "lib"
@@ -20,7 +20,7 @@
         {
           "expr": false,
           "type": "coffee",
-          "template": "jade",
+          "template": "pug",
           "extension": ".tag"
         }
       ],
@@ -47,7 +47,6 @@
     "coffeeify": "^1.1.0",
     "coveralls": "^2.11.4",
     "istanbul": "^0.3.20",
-    "jade": "^1.9.2",
     "karma": "^0.13.9",
     "karma-browserify": "^4.3.0",
     "karma-chai": "^0.1.0",
@@ -59,7 +58,8 @@
     "karma-sinon": "^1.0.4",
     "karma-spec-reporter": "0.0.20",
     "mocha": "^2.0.1",
-    "riot": "^3.0.1",
+    "pug": "^0.1.0",
+    "riot": "^3.0.2",
     "riotify": "^0.1.2",
     "simulant": "^0.1.5",
     "sinon": "^1.12.2",

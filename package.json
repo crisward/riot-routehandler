@@ -1,69 +1,69 @@
 {
-  "name": "riot-routehandler",
-  "version": "1.2.3",
-  "description": "A angular-ui-router inspired router handler for riot.js",
-  "main": "lib/routehandler.js",
-  "repository": "crisward/riot-routehandler",
-  "scripts": {
-    "test": "karma start",
-    "tdd": "npm run watch & karma start --reporters=spec --browsers=Chrome --singleRun=false",
-    "watch": "riot -w src lib --template pug",
-    "build": "riot src lib --template pug"
-  },
-  "directories": {
-    "lib": "lib"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "riotify",
-        {
-          "expr": false,
-          "type": "coffee",
-          "template": "pug",
-          "extension": ".tag"
-        }
-      ],
-      [
-        "coffeeify",
-        {
-          "extension": ".coffee"
-        }
-      ]
-    ]
-  },
-  "author": "cris ward",
-  "license": "ISC",
-  "dependencies": {
-    "page": "^1.6.3"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org"
-  },
-  "devDependencies": {
-    "browserify-istanbul": "^0.2.1",
-    "chai": "^3.0.0",
-    "coffee-script": "^1.9.3",
-    "coffeeify": "^1.1.0",
-    "coveralls": "^2.11.4",
-    "istanbul": "^0.3.20",
-    "karma": "^0.13.9",
-    "karma-browserify": "^4.3.0",
-    "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^0.2.1",
-    "karma-coverage": "^0.5.0",
-    "karma-mocha": "^0.1",
-    "karma-phantomjs-launcher": "^0.1",
-    "karma-sauce-launcher": "^0.2.14",
-    "karma-sinon": "^1.0.4",
-    "karma-spec-reporter": "0.0.20",
-    "mocha": "^2.0.1",
-    "pug": "^0.1.0",
-    "riot": "^3.0.2",
-    "riotify": "^0.1.2",
-    "simulant": "^0.1.5",
-    "sinon": "^1.12.2",
-    "sinon-chai": "^2.8.0",
-    "watchify": "^3.2.1"
-  }
+    "name": "riot-routehandler",
+    "version": "3.0.0",
+    "description": "A angular-ui-router inspired router handler for riot.js",
+    "main": "lib/routehandler.js",
+    "repository": "crisward/riot-routehandler",
+    "scripts": {
+        "test": "karma start",
+        "tdd": "npm run watch & karma start --reporters=spec --browsers=Chrome --singleRun=false",
+        "watch": "riot -w src lib --template pug",
+        "build": "riot src lib --template pug"
+    },
+    "directories": {
+        "lib": "lib"
+    },
+    "browserify": {
+        "transform": [
+            [
+                "riotify",
+                {
+                    "expr": false,
+                    "type": "coffee",
+                    "template": "pug",
+                    "extension": ".tag"
+                }
+            ],
+            [
+                "coffeeify",
+                {
+                    "extension": ".coffee"
+                }
+            ]
+        ]
+    },
+    "author": "cris ward",
+    "license": "ISC",
+    "dependencies": {
+        "page": "^1.6.3"
+    },
+    "publishConfig": {
+        "registry": "http://registry.npmjs.org"
+    },
+    "devDependencies": {
+        "browserify-istanbul": "^0.2.1",
+        "chai": "^3.0.0",
+        "coffee-script": "^1.9.3",
+        "coffeeify": "^1.1.0",
+        "coveralls": "^2.11.4",
+        "istanbul": "^0.3.20",
+        "karma": "^0.13.9",
+        "karma-browserify": "^4.3.0",
+        "karma-chai": "^0.1.0",
+        "karma-chrome-launcher": "^0.2.1",
+        "karma-coverage": "^0.5.0",
+        "karma-mocha": "^0.1",
+        "karma-phantomjs-launcher": "^0.1",
+        "karma-sauce-launcher": "^0.2.14",
+        "karma-sinon": "^1.0.4",
+        "karma-spec-reporter": "0.0.20",
+        "mocha": "^2.0.1",
+        "pug": "^0.1.0",
+        "riot": "^3.0.2",
+        "riotify": "^0.1.2",
+        "simulant": "^0.1.5",
+        "sinon": "^1.12.2",
+        "sinon-chai": "^2.8.0",
+        "watchify": "^3.2.1"
+    }
 }

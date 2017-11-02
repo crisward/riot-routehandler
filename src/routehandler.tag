@@ -39,12 +39,11 @@ routehandler
           removeTag.nexttag[0]?.unmount(true)
 
     @setTag = (tagname,routeopts)=>
-      @update(tagname:tagname)
+      @root.childNodes[0].setAttribute("data-is",tagname)
+      @tags[tagname]
       tag = riot.mount(tagname,routeopts)
       tag[0].opts = routeopts
-      tag[0].update()
       tag
-
 
     @findRoute = (parents,routes,cback)=>
       parentpath = if parents then parents.map((ob)->ob.route).join("").replace(/\/\//g,'/') else ""

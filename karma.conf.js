@@ -42,6 +42,10 @@ module.exports = function (config) {
       build: 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')',
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
       testName: 'riot-routehandler',
+      connectOptions: {
+        port: 5757,
+        logfile: 'sauce_connect.log'
+      },
       startConnect: true,
       recordVideo: false,
       recordScreenshots: false,
